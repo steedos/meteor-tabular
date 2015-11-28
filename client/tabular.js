@@ -117,7 +117,10 @@ var tabularOnRendered = function () {
     }
 
     // Always update the selector reactively
-    template.tabular.selector = data.selector;
+    if (data.selector)
+      template.tabular.selector = data.selector;
+    else if (data.table.selector)
+      template.tabular.selector = data.table.selector(Meteor.userId());
 
     // The remaining stuff relates to changing the `table`
     // attribute. If we didn't change it, we can stop here,
